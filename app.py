@@ -20,6 +20,7 @@ def makeDictionaryFromLabels(labeled):
     result = {}
     for ent in labeled.ents:
         result[str(ent.label_).lower()] = ent.text
+    return result
 
 
 if __name__ == '__main__':
