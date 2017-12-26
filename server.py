@@ -1,9 +1,11 @@
+import os
+
 import spacy
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
-model_directory = "D:\\model"
+model_directory = os.path.dirname(os.path.realpath(__file__)) + "/model"
 
 nlp = spacy.load(model_directory)
 
