@@ -2,8 +2,10 @@ import os
 
 import spacy
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 model_directory = os.path.dirname(os.path.realpath(__file__)) + "/model"
 
@@ -12,7 +14,7 @@ nlp = spacy.load(model_directory)
 
 @app.route('/getNormalizedClassLabel', methods=["POST"])
 def getNormalizedName():
-    labeled = nlp(request.form["originalName"])
+    labeled = nlp(request.get_json().get("originalName"))
     return jsonify(makeDictionaryFromLabels(labeled))
 
 
